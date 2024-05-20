@@ -73,6 +73,8 @@ dependencies {
     implementation(libs.picasso)
     implementation(libs.coroutines.core)
     implementation(libs.coroutines.android)
+    implementation(libs.play.services.maps)
+    implementation(libs.play.services.location)
     implementation(libs.androidx.recyclerview)
     implementation(libs.androidx.constraintlayout)
 }
