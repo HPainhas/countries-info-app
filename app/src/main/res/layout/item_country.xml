@@ -41,8 +41,8 @@
 
     <ImageView
         android:id="@+id/itemCountryExpandIcon"
-        android:layout_width="48dp"
-        android:layout_height="48dp"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
         android:layout_marginEnd="20dp"
         android:clickable="true"
         android:contentDescription="@string/item_country_expand_icon_content_description"
