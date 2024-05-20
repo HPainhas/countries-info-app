@@ -1,8 +1,201 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:padding="16dp">
+    android:layout_marginBottom="10dp"
+    android:background="@color/lightGrey">
 
-</LinearLayout>
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:layout_width="100dp"
+        android:layout_height="70dp"
+        android:visibility="visible"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/itemCountryFlag"
+        android:layout_width="100dp"
+        android:layout_height="70dp"
+        android:contentDescription="Country flag image"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:src="@drawable/brazil_flag" />
+
+    <TextView
+        android:id="@+id/itemCountryName"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:maxLines="2"
+        android:textColor="@color/black"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@id/itemCountryFlag"
+        app:layout_constraintEnd_toStartOf="@id/itemCountryExpandIcon"
+        app:layout_constraintStart_toEndOf="@id/itemCountryFlag"
+        app:layout_constraintTop_toTopOf="@id/itemCountryFlag"
+        tools:text="Brazil" />
+
+    <ImageView
+        android:id="@+id/itemCountryExpandIcon"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_marginEnd="20dp"
+        android:clickable="true"
+        android:contentDescription="@string/item_country_expand_icon_content_description"
+        android:focusable="true"
+        android:src="@drawable/arrow_drop_down_filled_24"
+        app:layout_constraintBottom_toBottomOf="@id/itemCountryName"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/itemCountryName" />
+
+    <!-- Expandable views below -->
+
+    <TextView
+        android:id="@+id/itemCountryCapitalHeader"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="@string/item_country_capital_header"
+        android:textColor="@color/black"
+        android:textSize="12sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="@id/itemCountryFlag"
+        app:layout_constraintTop_toBottomOf="@id/itemCountryFlag" />
+
+    <TextView
+        android:id="@+id/itemCountryCapitalContent"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
+        android:textColor="@color/black"
+        android:textSize="12sp"
+        app:layout_constraintStart_toEndOf="@id/itemCountryCapitalHeader"
+        app:layout_constraintTop_toTopOf="@id/itemCountryCapitalHeader"
+        tools:text="Brasilia" />
+
+    <TextView
+        android:id="@+id/itemCountryPopulationHeader"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/item_country_population_header"
+        android:textColor="@color/black"
+        android:textSize="12sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="@id/itemCountryCapitalHeader"
+        app:layout_constraintTop_toBottomOf="@id/itemCountryCapitalHeader" />
+
+    <TextView
+        android:id="@+id/itemCountryPopulationContent"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
+        android:textColor="@color/black"
+        android:textSize="12sp"
+        app:layout_constraintStart_toEndOf="@id/itemCountryPopulationHeader"
+        app:layout_constraintTop_toTopOf="@id/itemCountryPopulationHeader"
+        tools:text="212,559,409" />
+
+    <TextView
+        android:id="@+id/itemCountryCurrencyHeader"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/item_country_currency_header"
+        android:textColor="@color/black"
+        android:textSize="12sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="@id/itemCountryPopulationHeader"
+        app:layout_constraintTop_toBottomOf="@id/itemCountryPopulationHeader" />
+
+    <TextView
+        android:id="@+id/itemCountryCurrencyContent"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:textColor="@color/black"
+        android:textSize="12sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/itemCountryCurrencyHeader"
+        app:layout_constraintTop_toTopOf="@id/itemCountryCurrencyHeader"
+        tools:text="Brazilian Real (BRL) - R$" />
+
+    <TextView
+        android:id="@+id/itemCountryLanguagesHeader"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/item_country_languages_header"
+        android:textColor="@color/black"
+        android:textSize="12sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="@id/itemCountryCurrencyHeader"
+        app:layout_constraintTop_toBottomOf="@id/itemCountryCurrencyHeader" />
+
+    <TextView
+        android:id="@+id/itemCountryLanguagesContent"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:textColor="@color/black"
+        android:textSize="12sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/itemCountryLanguagesHeader"
+        app:layout_constraintTop_toTopOf="@id/itemCountryLanguagesHeader"
+        tools:text="Portuguese" />
+
+    <TextView
+        android:id="@+id/itemCountryContinentsHeader"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/item_country_continents_header"
+        android:textColor="@color/black"
+        android:textSize="12sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="@id/itemCountryLanguagesHeader"
+        app:layout_constraintTop_toBottomOf="@id/itemCountryLanguagesHeader" />
+
+    <TextView
+        android:id="@+id/itemCountryContinentsContent"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:textColor="@color/black"
+        android:textSize="12sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/itemCountryContinentsHeader"
+        app:layout_constraintTop_toTopOf="@id/itemCountryContinentsHeader"
+        tools:text="South America" />
+
+    <TextView
+        android:id="@+id/itemCountryCoordinatesHeader"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/item_country_coordinates_header"
+        android:textColor="@color/black"
+        android:textSize="12sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="@id/itemCountryContinentsHeader"
+        app:layout_constraintTop_toBottomOf="@id/itemCountryContinentsHeader" />
+
+    <TextView
+        android:id="@+id/itemCountryCoordinatesContent"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
+        android:textColor="@color/black"
+        android:textSize="12sp"
+        app:layout_constraintStart_toEndOf="@id/itemCountryCoordinatesHeader"
+        app:layout_constraintTop_toTopOf="@id/itemCountryCoordinatesHeader"
+        tools:text="[-15.79, -47.88]" />
+
+    <!-- TODO - Add live map based on coordinates (lat, lng) -->
+
+</androidx.constraintlayout.widget.ConstraintLayout>

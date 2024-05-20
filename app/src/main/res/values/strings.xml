@@ -1,3 +1,12 @@
 <resources>
-    <string name="app_name">countries-info-app</string>
+
+    <string name="app_name">Countries Info App</string>
+    <string name="item_country_expand_icon_content_description">Expand icon</string>
+    <string name="item_country_capital_header">Capital:</string>
+    <string name="item_country_population_header">Population:</string>
+    <string name="item_country_currency_header">Currency:</string>
+    <string name="item_country_languages_header">Languages:</string>
+    <string name="item_country_continents_header">Continents:</string>
+    <string name="item_country_coordinates_header">Coordinates:</string>
+
 </resources>

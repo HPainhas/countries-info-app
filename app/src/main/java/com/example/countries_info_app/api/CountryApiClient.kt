@@ -12,9 +12,12 @@ import org.json.JSONObject
 import java.util.concurrent.TimeUnit
 
 object CountryApiClient {
+
+    private const val BASE_URL = "https://restcountries.com/v3.1/all"
+
     fun fetchCountries(context: Context, callback: (List<Country>?, Exception?) -> Unit) {
         val request = Request.Builder()
-            .url("https://restcountries.com/v3.1/all")
+            .url("$BASE_URL?fields=name,capital,population,flags,currencies,languages,continents,capitalInfo")
             .cacheControl(
                 CacheControl.Builder()
                     .maxStale(10, TimeUnit.HOURS)
@@ -42,31 +45,43 @@ object CountryApiClient {
                     for (i in 0 until countries.length()) {
                         val countryData = countries.getJSONObject(i)
 
-                        val name = if (countryData.has("name")) countryData.getJSONObject("name").getString("official") else null
-                        val capital = if (countryData.has("capital")) countryData.getString("capital") else null
+                        val name = if (countryData.has("name")) countryData.getJSONObject("name").getString("common") else null
+                        val capital = if (countryData.has("capital")) getCountryCapital(countryData.getJSONArray("capital")) else null
                         val population = if (countryData.has("population")) countryData.getInt("population") else null
                         val flag = if (countryData.has("flags")) getCountryFlag(flagsObject = countryData.getJSONObject("flags")) else null
-                        val currency = if (countryData.has("currencies")) getCountryCurrency(currencyObject = countryData.getJSONObject("currencies")) else null
+                        val currencies = if (countryData.has("currencies")) getCountryCurrencies(currenciesObject = countryData.getJSONObject("currencies")) else null
                         val languages = if (countryData.has("languages")) getCountryLanguages(languagesObject = countryData.getJSONObject("languages")) else null
                         val continents = if (countryData.has("continents")) getCountryContinents(countryData.getJSONArray("continents")) else null
+                        val coordinates = if (countryData.has("capitalInfo")) getCountryCoordinates(countryData.getJSONObject("capitalInfo")) else null
 
                         val country = Country(
                             name,
                             capital,
                             population,
                             flag,
-                            currency,
+                            currencies,
                             languages,
-                            continents
+                            continents,
+                            coordinates
                         )
 
                         countryList.add(country)
                     }
 
-                    callback(countryList, null)
+                    val sortedCountryList = countryList.sortedBy { it.name }
+
+                    callback(sortedCountryList, null)
                 } ?: callback(null, IOException("Response body is null"))
             }
         })
+    }
+
+    private fun getCountryCapital(capitalsArray: JSONArray): String? {
+        return if (capitalsArray.length() == 0) {
+            return null
+        } else {
+            capitalsArray.getString(0)
+        }
     }
 
     private fun getCountryFlag(flagsObject: JSONObject): Flag {
@@ -76,13 +91,13 @@ object CountryApiClient {
         )
     }
 
-    private fun getCountryCurrency(currencyObject: JSONObject): List<Currency> {
+    private fun getCountryCurrencies(currenciesObject: JSONObject): List<Currency> {
         val currencyList = mutableListOf<Currency>()
-        val currencyKeys = currencyObject.keys()
+        val currencyKeys = currenciesObject.keys()
 
         while (currencyKeys.hasNext()) {
             val currencyKey = currencyKeys.next() as String
-            val currencyData = currencyObject.getJSONObject(currencyKey)
+            val currencyData = currenciesObject.getJSONObject(currencyKey)
             val currencyName = if (currencyData.has("name")) currencyData.getString("name") else null
             val currencySymbol = if (currencyData.has("symbol")) currencyData.getString("symbol") else null
 
@@ -119,5 +134,19 @@ object CountryApiClient {
         }
 
         return continents
+    }
+
+    private fun getCountryCoordinates(coordinatesObject: JSONObject): Coordinates? {
+        val coordinatesKey = coordinatesObject.keys().next() as String
+        val coordinatesData = coordinatesObject.getJSONArray(coordinatesKey)
+
+        return if (coordinatesData.length() > 0) {
+            Coordinates(
+                latitude = coordinatesData.getDouble(0),
+                longitude =  coordinatesData.getDouble(1)
+            )
+        } else {
+            null
+        }
     }
 }

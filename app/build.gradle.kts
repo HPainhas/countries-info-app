@@ -37,6 +37,7 @@ android {
         jvmTarget = "1.8"
     }
     buildFeatures {
+        viewBinding = true
         compose = true
     }
     composeOptions {
@@ -69,6 +70,9 @@ dependencies {
     debugImplementation(libs.androidx.ui.test.manifest)
 
     implementation(libs.okhttp)
+    implementation(libs.picasso)
     implementation(libs.coroutines.core)
     implementation(libs.coroutines.android)
+    implementation(libs.androidx.recyclerview)
+    implementation(libs.androidx.constraintlayout)
 }
