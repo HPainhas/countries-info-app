@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.countries_info_app.api.Coordinates
 import com.example.countries_info_app.api.CountryApiClient
 import com.example.countries_info_app.databinding.ActivityMainBinding
 
@@ -36,5 +37,10 @@ class MainActivity : AppCompatActivity() {
                 }
             }
         }
+    }
+
+    fun locateCountry(coordinates: Coordinates) {
+        val mapsFragment = supportFragmentManager.findFragmentById(binding.countriesMapFragmentContainer.id) as MapsFragment
+        mapsFragment.updateLocation(coordinates.latitude!!, coordinates.longitude!!)
     }
 }

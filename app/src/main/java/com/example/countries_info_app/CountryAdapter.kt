@@ -73,8 +73,15 @@ class CountryAdapter(
                 itemCountryLanguagesContent.text = formatLanguages(country.languages)
                 itemCountryContinentsContent.text = formatContinents(country.continents)
                 itemCountryCoordinatesContent.text = formatCoordinates(country.coordinates)
-            }
 
+                itemCountryLocateCoordinatesButton.setOnClickListener {
+                    val coordinates = country.coordinates
+
+                    if (coordinates?.latitude != null && coordinates.longitude != null) {
+                        (context as MainActivity).locateCountry(coordinates)
+                    }
+                }
+            }
         }
 
         fun showDetails(show: Boolean) {
@@ -98,6 +105,7 @@ class CountryAdapter(
                 itemCountryContinentsContent.visibility = if (show) View.VISIBLE else View.GONE
                 itemCountryCoordinatesHeader.visibility = if (show) View.VISIBLE else View.GONE
                 itemCountryCoordinatesContent.visibility = if (show) View.VISIBLE else View.GONE
+                itemCountryLocateCoordinatesButton.visibility = if (show) View.VISIBLE else View.GONE
             }
         }
 

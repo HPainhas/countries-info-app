@@ -9,5 +9,6 @@
     <string name="item_country_languages_header">Languages:</string>
     <string name="item_country_continents_header">Continents:</string>
     <string name="item_country_coordinates_header">Coordinates:</string>
+    <string name="item_country_locate_coordinates_button_text">Locate Capital</string>
 
 </resources>

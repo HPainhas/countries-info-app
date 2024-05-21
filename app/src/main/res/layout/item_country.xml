@@ -196,6 +196,15 @@
         app:layout_constraintTop_toTopOf="@id/itemCountryCoordinatesHeader"
         tools:text="[-15.79, -47.88]" />
 
-    <!-- TODO - Add live map based on coordinates (lat, lng) -->
+    <Button
+        android:id="@+id/itemCountryLocateCoordinatesButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/dodgerBlue"
+        android:textColor="@color/white"
+        android:textAllCaps="false"
+        app:layout_constraintTop_toBottomOf="@id/itemCountryCoordinatesHeader"
+        app:layout_constraintStart_toStartOf="@id/itemCountryCoordinatesHeader"
+        android:text="@string/item_country_locate_coordinates_button_text"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
