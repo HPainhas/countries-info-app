@@ -19,7 +19,7 @@
         android:id="@+id/itemCountryFlag"
         android:layout_width="100dp"
         android:layout_height="70dp"
-        android:contentDescription="Country flag image"
+        android:contentDescription="@string/item_country_flag_content_description"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:src="@drawable/brazil_flag" />

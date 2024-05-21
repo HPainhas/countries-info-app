@@ -1,6 +1,7 @@
 <resources>
 
     <string name="app_name">Countries Info App</string>
+    <string name="item_country_flag_content_description">Country flag image</string>
     <string name="item_country_expand_icon_content_description">Expand icon</string>
     <string name="item_country_capital_header">Capital:</string>
     <string name="item_country_population_header">Population:</string>

@@ -26,6 +26,13 @@ class MainActivity : AppCompatActivity() {
                 runOnUiThread {
                     countryAdapter = CountryAdapter(this, countries)
                     binding.countriesRecyclerView.adapter = countryAdapter
+
+                    if (savedInstanceState == null) {
+                        val fragment = MapsFragment()
+                        supportFragmentManager.beginTransaction()
+                            .replace(binding.countriesMapFragmentContainer.id, fragment)
+                            .commit()
+                    }
                 }
             }
         }

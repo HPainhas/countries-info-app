@@ -37,7 +37,7 @@ class CountryAdapter(
 
         holder.itemView.setOnClickListener {
             expandedPosition = if (isExpanded) -1 else position
-            notifyDataSetChanged()
+            notifyItemChanged(position)
         }
     }
 
